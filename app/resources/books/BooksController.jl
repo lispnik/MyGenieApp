@@ -15,7 +15,7 @@ const BillGatesBooks = Book[
 using Genie.Renderer.Html
 
 function billgatesbooks()
-    html(:books, :billgatesbooks, books = BillGatesBooks)
+    html(:books, "billgatesbooks.jl.md", books = BillGatesBooks, layout = :admin)
 end
 
 end
