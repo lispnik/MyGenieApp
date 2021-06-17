@@ -12,13 +12,21 @@ const BillGatesBooks = Book[
     Book("The Sympathizer", "Viet Thanh Nguyen"),
     Book("Energy and Civilization, A History", "Vaclav Smil")]
 
+using Genie.Renderer.Html
+
 function billgatesbooks()
-    "
-    <h1>Bill Gates' list of recommended books</h1>
-    <ul>
-    $(["<li>$(book.title) by $(book.author)</li>" for book in BillGatesBooks]...)
-    </ul>
-    "
+    [
+        Html.h1() do
+            "Bill Gates' list of recommended books"
+        end
+        Html.ul() do
+            @foreach(BillGatesBooks) do book
+                Html.li() do 
+                    book.title * " by " * book.author
+                end
+            end
+        end
+    ]
 end
 
 end
