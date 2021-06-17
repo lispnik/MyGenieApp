@@ -15,18 +15,7 @@ const BillGatesBooks = Book[
 using Genie.Renderer.Html
 
 function billgatesbooks()
-    [
-        Html.h1() do
-            "Bill Gates' list of recommended books"
-        end
-        Html.ul() do
-            @foreach(BillGatesBooks) do book
-                Html.li() do 
-                    book.title * " by " * book.author
-                end
-            end
-        end
-    ]
+    html(:books, :billgatesbooks, books = BillGatesBooks)
 end
 
 end
