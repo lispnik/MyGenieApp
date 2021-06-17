@@ -1,21 +1,20 @@
 module BooksController
 
-struct Book
-    title::String
-    author::String
-end
-
-const BillGatesBooks = Book[
-    Book("The Best We Could Do", "Thi Bui"),
-    Book("Evicted: Poverty and Profit in the American City", "Matthew Desmond"),
-    Book("Believe Me: A Memoir of Love, Death, and Jazz Chickens", "Eddie Izzard"),
-    Book("The Sympathizer", "Viet Thanh Nguyen"),
-    Book("Energy and Civilization, A History", "Vaclav Smil")]
-
-using Genie.Renderer.Html
+using Genie.Renderer.Html, SearchLight, Books
 
 function billgatesbooks()
-    html(:books, "billgatesbooks.jl.md", books = BillGatesBooks, layout = :admin)
+    html(:books, :billgatesbooks, books = all(Book))
+end
+
+module API
+
+using ..BooksController
+using Genie.Renderer.Json, SearchLight, Books
+
+function billgatesbooks()
+    json(:books, :billgatesbooks, books = all(Book))
+end
+
 end
 
 end
